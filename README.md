@@ -120,26 +120,24 @@ node bin/cli.js set ai-aigc model deepseek-chat
 
 ---
 
-## 联系我们
+## 联系我们与打赏支持
+
+如果您在使用过程中遇到问题，或希望与团队交流，欢迎扫码联系我们或打赏支持：
+
+<div align="center">
+
+**微信交流** | **钉钉联系**
+:---:|:---:
+<img src="./asset/weixin.png" width="180" alt="微信交流"> | <img src="./asset/dingtalk.png" width="180" alt="钉钉联系">
+
+</div>
+
+---
 
 - **官方网站**: [https://aigc.wuxian.xyz](https://aigc.wuxian.xyz)
 - **GitHub Issues**: [提交反馈](https://github.com/WT-Agent/ai-aigc/issues)
 - **反馈邮箱**: us@wuxian.xyz
 - **官方主页**: [ai.wuxian.xyz](https://ai.wuxian.xyz)
-
----
-
-## 打赏支持
-
-如果本项目对您的工作或学习有所帮助，欢迎请团队喝杯咖啡支持我们的开源维护！
-
-<div align="center">
-
-**微信支付** | **钉钉交流**
-:---:|:---:
-<img src="https://ai.wuxian.xyz/assets/weixin.png" width="200" alt="微信交流"> | <img src="https://ai.wuxian.xyz/assets/dingtalk.png" width="200" alt="钉钉联系">
-
-</div>
 
 ---
 
