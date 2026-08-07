@@ -2,10 +2,10 @@
   <section class="nomads-showcase-section">
     <div class="showcase-header">
       <div class="header-left">
-        <h2 class="showcase-title">AIGC 降重与学术润色实战模板库</h2>
-        <p class="showcase-subtitle">精选高频学术降重与润色场景，点击“一键套用”快速生成高质量对比报告</p>
+        <h2 class="showcase-title">实战案例与模板库 (Nomads Showcase)</h2>
+        <p class="showcase-subtitle">精选高频实战场景，点击“一键套用”快速生成高质量结果</p>
       </div>
-      <span class="showcase-badge">已收录 {{ showcaseItems.length }} 个经典案例</span>
+      <span class="showcase-badge">已收录 {{ showcaseItems.length }} 个实战模板</span>
     </div>
 
     <div class="showcase-grid">
@@ -41,8 +41,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+const props = defineProps<{
+  appTitle?: string;
+  isImage?: boolean;
+}>();
+
 const emit = defineEmits<{
-  (e: 'apply-template', payload: { prompt: string; mode?: string; subject?: string }): void;
+  (e: 'apply-template', payload: { prompt: string; style?: string }): void;
 }>();
 
 export interface ShowcaseItem {
@@ -50,73 +55,105 @@ export interface ShowcaseItem {
   tag: string;
   title: string;
   prompt: string;
-  mode?: string;
-  subject?: string;
+  style?: string;
   usageCount: string;
 }
 
-const showcaseItems = computed<ShowcaseItem[]>(() => [
-  {
-    id: 'aigc-1',
-    tag: '工学技术',
-    title: '深度学习算法段落去AI特征',
-    prompt: '此外，不可否认的是，卷积神经网络在特征提取方面表现出了巨大的优越性。总而言之，我们提出的改进模型能够显著提高图像识别的准确率。',
-    mode: '重度降重去AI痕迹',
-    subject: '工学技术',
-    usageCount: '38.2k'
-  },
-  {
-    id: 'aigc-2',
-    tag: '医学医药',
-    title: '临床对照实验结论学术润色',
-    prompt: '实验结果表明，该药物对于降低患者血压具有非常好的效果，并且没有明显的毒副作用。所以我们认为这种疗法值得在临床上推广。',
-    mode: '顶刊学术语体润色',
-    subject: '医学医药',
-    usageCount: '29.5k'
-  },
-  {
-    id: 'aigc-3',
-    tag: '经济管理',
-    title: '面板数据计量回归分析逻辑重构',
-    prompt: '由于数字经济的快速发展，企业创新绩效得到了极大的提升。另外，市场竞争程度在其中起到了中介作用，使得效应更加明显。',
-    mode: '逻辑衔接与结构强化',
-    subject: '经济管理',
-    usageCount: '34.1k'
-  },
-  {
-    id: 'aigc-4',
-    tag: '人文社科',
-    title: '质性研究文献综述去AI套话',
-    prompt: '随着全球化进程的不断深入，文化认同问题成为了学术界关注的热点。众所周知，不同文化之间的碰撞与融合产生了深刻的影响。',
-    mode: '重度降重去AI痕迹',
-    subject: '人文社科',
-    usageCount: '27.9k'
-  },
-  {
-    id: 'aigc-5',
-    tag: '理学基础',
-    title: '量子物理机理推导学术改写',
-    prompt: '通过对波函数的解算，我们可以发现粒子在特定能级上的分布规律。这一发现对于理解微观粒子的跃迁机制具有十分关键的意义。',
-    mode: '顶刊学术语体润色',
-    subject: '理学基础',
-    usageCount: '19.8k'
-  },
-  {
-    id: 'aigc-6',
-    tag: '查重改写',
-    title: '高查重率重复段落同义置换',
-    prompt: '本文采用问卷调查法对消费者的购买意愿进行了实证分析，统计结果验证了之前的假设，证明信任度对购买决策有正向作用。',
-    mode: '查重报告针对性改写',
-    subject: '经济管理',
-    usageCount: '41.6k'
+// 模拟实战案例数据库（支持根据文本/图像类及应用主题切换）
+const showcaseItems = computed<ShowcaseItem[]>(() => {
+  if (props.isImage) {
+    return [
+      {
+        id: 'img-1',
+        tag: '写真肖像',
+        title: '商务精英形象照',
+        prompt: '高端写字楼背景，身穿深蓝色西装，眼神自信专注，赛博朋克光影效果',
+        style: '<photography>',
+        usageCount: '18.5k'
+      },
+      {
+        id: 'img-2',
+        tag: '概念插画',
+        title: '未来科幻城市海报',
+        prompt: '霓虹灯光的赛博朋克立体城市，飞行汽车，高品质概念插画，8k分辨率',
+        style: '<illustration>',
+        usageCount: '24.1k'
+      },
+      {
+        id: 'img-3',
+        tag: '二次元动漫',
+        title: '日系国潮动漫角色',
+        prompt: '穿着现代汉服的国风少年，手持纸伞，水彩漫感，唯美光感与柔光滤镜',
+        style: '<anime>',
+        usageCount: '15.9k'
+      },
+      {
+        id: 'img-4',
+        tag: '水彩艺术',
+        title: '治愈系自然风景画',
+        prompt: '晨雾中的森林湖泊，阳光穿透树林，水彩渐变质感，温馨治愈风格',
+        style: '<watercolor>',
+        usageCount: '12.3k'
+      }
+    ];
+  } else {
+    return [
+      {
+        id: 'text-1',
+        tag: '职场总结',
+        title: '周报 OKR 成果提炼',
+        prompt: '本周完成了核心模块优化与线上异常排查，请帮我梳理为具备量化指标的 OKR 汇报文案',
+        style: '专业干练，结果导向',
+        usageCount: '32.8k'
+      },
+      {
+        id: 'text-2',
+        tag: '高情商沟通',
+        title: '拒绝不合理加班话术',
+        prompt: '领导在周末突然布置非紧急任务，如何高情商、委婉且有理有据地推迟到工作日处理？',
+        style: '高情商，委婉，有情调',
+        usageCount: '28.4k'
+      },
+      {
+        id: 'text-3',
+        tag: '短视频文案',
+        title: '知识干货吸睛开头',
+        prompt: '准备制作一条关于高效学习法的短视频，设计 3 个能在前 3 秒留住用户的爆款口播开头',
+        style: '专业干练，结果导向',
+        usageCount: '45.1k'
+      },
+      {
+        id: 'text-4',
+        tag: '商务公文',
+        title: '跨部门协同申请函',
+        prompt: '因项目上线需要研发部门配合联调，撰写一份正式、严谨且明确时间节点的协同申请书',
+        style: '专业干练，结果导向',
+        usageCount: '19.7k'
+      },
+      {
+        id: 'text-5',
+        tag: '小红书种草',
+        title: '实战干货笔记排版',
+        prompt: '分享 5 个提升日常工作效率的文字工具，语言亲切，搭配吸引人的标题与 Emoji 排版',
+        style: '高情商，委婉，有情调',
+        usageCount: '36.2k'
+      },
+      {
+        id: 'text-6',
+        tag: '学术润色',
+        title: '论文摘要与结论重构',
+        prompt: '将以下粗糙的研究结论重写为学术规范、逻辑严密且无语法语病的论文摘要总结',
+        style: '专业干练，结果导向',
+        usageCount: '22.0k'
+      }
+    ];
   }
-]);
+});
 
 function applyTemplate(item: ShowcaseItem) {
   emit('apply-template', {
     prompt: item.prompt,
-    mode: item.mode,
-    subject: item.subject
+    style: item.style
   });
 }
 </script>
